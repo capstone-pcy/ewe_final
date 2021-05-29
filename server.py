@@ -17,11 +17,16 @@ def jq():
 def style():
 	return send_from_directory('./static', 'style.css')	
 
-@app.route('/upload', methods = [ 'POST'])
+@app.route("/test")
+def test():
+    return render_template("test.html")
+
+@app.route('/upload', methods = ['GET','POST'])
 def upload_file(): 
-	print(request.files,request.form)
-	request.files['data'].save("/home/mihir/projects/new/{}.webm".format(request.form["fname"]))
-	return "success"
+    print(request.files,request.form)
+    print('dd')
+    request.files['data'].save("./static/video/{}.webm".format(request.form["fname"]))
+    return "success"
 
 if __name__ == "__main__":
     app.run()
